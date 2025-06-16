@@ -5,15 +5,16 @@ import { CustomError } from './../models/customError.model';
 import { CourseModule, ICourseModule } from './../models/course-module.model';
 import { CourseModuleLecture, ICourseModuleLecture } from './../models/course-module-lecture.model';
 import { Types } from 'mongoose';
+import { IUserWork } from '../models/user-work.model';
 
-interface UserGrade {
-  userId: any;
-  grade: any;
-}
 
 interface AddUserGradesBody {
   lectureId: any;
-  userGrades: UserGrade[];
+  userGrades: IUserGrade[];
+}
+interface AddUserWork {
+  lectureId: any;
+  userWork: IUserWork[];
 }
 
 export default class CourseService {
@@ -470,5 +471,27 @@ export default class CourseService {
       });
 
     return lecture.userGrades;
+  }
+
+  static async getUserWork(body: AddUserWork): Promise<IUserWork[]> {
+    const lecture = await CourseModuleLecture
+    .findById(body.lectureId)
+    .catch(error => {
+      throw new CustomError(error.message, error.status);
+    });
+
+    if(!lecture) {
+      throw new CustomError('No lecture found', 400);
+    }
+
+    lecture.userWork = body.userWork;
+
+    await lecture
+    .save()
+    .catch(error => {
+      throw new CustomError(error.message, error.status);
+    });
+
+    return lecture.userWork;
   }
 }

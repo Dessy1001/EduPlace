@@ -4,7 +4,6 @@ import fs from 'fs';
 
 import multer from 'multer';
 
-import { File } from '../models/file.model';
 import { CustomError } from '../models/customError.model';
 
 let storage = multer.diskStorage({

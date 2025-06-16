@@ -44,6 +44,8 @@ export class CoursesComponent implements OnInit {
   public user = this.authService.userValue();
   public moduleTitles: string[] = [];
   public courseModulesAndGrades: { course: ICourse; modulesAndGrades: ModulesAndGrades[] }[] = [];
+  public files: File[] = [];
+  public statusMessage!: string;
 
   public ngOnInit(): void {
     if (this.user.role === UserRole.Admin) {
@@ -68,6 +70,19 @@ export class CoursesComponent implements OnInit {
         }
       );
     }
+  }
+
+  public onSelect(event: any): void {
+    if (this.files.length < 2) {
+      this.files.push(...event.addedFiles);
+    }
+    else {
+      this.statusMessage = 'You can only upload 2 files!'
+    }
+  }
+  
+  public onRemove(event: any): void {
+    this.files.splice(this.files.indexOf(event), 1);
   }
 
   public openCreateCourse(): void {

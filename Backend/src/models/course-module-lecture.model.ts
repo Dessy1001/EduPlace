@@ -1,10 +1,12 @@
 import mongoose, { Schema, Types } from 'mongoose';
 import { IUserGrade } from './user-grade.model';
+import { IUserWork } from './user-work.model';
 
 interface ICourseModuleLecture {
   title: string;
   date: Date;
   userGrades: IUserGrade[];
+  userWork: IUserWork[];
 }
 
 const CourseModuleLectureSchema = new Schema<ICourseModuleLecture>({
@@ -25,6 +27,19 @@ const CourseModuleLectureSchema = new Schema<ICourseModuleLecture>({
       },
       grade: {
         type: Number,
+        required: true,
+      },
+    },
+  ],
+  userWork: [
+    {
+      userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+      },
+      work: {
+        type: Buffer,
         required: true,
       },
     },

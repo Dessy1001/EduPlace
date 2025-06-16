@@ -14,7 +14,7 @@ export const sendEmail = async (email: string, subject: string, text: string): P
     });
 
     await transporter.sendMail({
-      from: 'codeacademy@ethereal.email',
+      from: 'eduplace@ethereal.email',
       to: 'peyton.quitzon@ethereal.email',
       subject: subject,
       text: text,

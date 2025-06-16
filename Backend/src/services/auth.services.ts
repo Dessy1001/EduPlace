@@ -85,7 +85,7 @@ export default class AuthService {
       });
 
     const text = `Username: ${body.email}\nPassword:${body.password}`;
-    await sendEmail(user.email, 'Your CodeAcademy account.', text)
+    await sendEmail(user.email, 'Your EduPlace account.', text)
       .catch(error => {
         throw new CustomError(error.message, error.status);
       });

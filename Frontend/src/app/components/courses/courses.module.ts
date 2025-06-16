@@ -12,6 +12,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { MatIconModule } from '@angular/material/icon';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { MatIconModule } from '@angular/material/icon';
     AppRoutingModule,
     MatTableModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    NgxDropzoneModule
   ],
   exports: [CoursesComponent]
 })

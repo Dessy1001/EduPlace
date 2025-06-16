@@ -8,18 +8,9 @@
     align-items: center;
     overflow: auto;
     max-height: 8000px;
-}
+    background: #d4d4ff;
+    background: linear-gradient(135deg,rgba(212, 212, 255, 1) 0%, rgba(255, 227, 189, 1) 25%, rgba(252, 215, 210, 1) 50%, rgba(225, 255, 217, 1) 75%, rgba(212, 212, 255, 1) 100%);
 
-.background-image {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-image: url('https://images.pexels.com/photos/7130555/pexels-photo-7130555.jpeg?cs=srgb&dl=pexels-codioful-%28formerly-gradienta%29-7130555.jpg&fm=jpg');
-    background-repeat: repeat;
-    background-size: cover;
 }
 
 .custom-dialog {

@@ -1,7 +1,5 @@
 <div class="background-container">
 
-    <div class="background-image"></div>
-
     <h1>Courses</h1>
 
     <div *ngIf="loading" class="loading-container">
@@ -79,28 +77,43 @@
 
                 </table>
             </div>
-
-            <ng-container *ngIf="!loading && user.role === 0">
-                <ng-container *ngFor="let courseModules of courseModulesAndGrades">
-                    <p>{{ courseModules.course.title }}</p>
-                    <table class="styled-table">
-                        <thead>
-                            <tr>
-                                <th>Module Title</th>
-                                <th>Module Grade</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <ng-container *ngIf="courseModules.modulesAndGrades.length > 0">
-                                <tr *ngFor="let module of courseModules.modulesAndGrades">
-                                    <td>{{ module.module.title }}</td>
-                                    <td>{{ module.grade }}</td>
+            <div *ngIf="!loading && user.role === 0">
+                <ng-container >
+                    <ng-container *ngFor="let courseModules of courseModulesAndGrades">
+                        <p>{{ courseModules.course.title }}</p>
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Module Title</th>
+                                    <th>Module Grade</th>
                                 </tr>
-                            </ng-container>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngIf="courseModules.modulesAndGrades.length > 0">
+                                    <tr *ngFor="let module of courseModules.modulesAndGrades">
+                                        <td>{{ module.module.title }}</td>
+                                        <td>{{ module.grade }}</td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </ng-container>
                 </ng-container>
-            </ng-container>
+                <form>
+                    <ngx-dropzone (change)="onSelect($event)" class="full-width-select">
+                        <ngx-dropzone-label>Upload course project</ngx-dropzone-label>
+        
+                        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                        </ngx-dropzone-preview>
+                    </ngx-dropzone>
+        
+                    <div *ngIf="statusMessage">{{statusMessage}}</div>
+        
+                    <button mat-button type="submit">Submit</button>
+                </form>
+            </div>
+            
 
            
         </div>
